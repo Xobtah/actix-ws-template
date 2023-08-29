@@ -6,8 +6,8 @@ use log::info;
 
 #[actix_web::main]
 async fn main() -> Result<()> {
-    env_logger::init();
     dotenvy::dotenv()?;
+    env_logger::init();
     info!("Starting server");
 
     let port = std::env::var("PORT")?.parse::<u16>()?;
