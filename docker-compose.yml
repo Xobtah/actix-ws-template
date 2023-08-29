@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  {{project-name}}:
+    env_file: .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USE_TLS=${USE_TLS}
+    image: ${PROJECT_NAME}
+    container_name: ${PROJECT_NAME}
+    restart: always
+    ports:
+      - "${PORT}:${PORT}"
+    volumes:
+      - .env:/app/.env
+      - ./certs/key.pem:${PRIVATE_KEY_PATH}
+      - ./certs/cert.pem:${CERTIFICATE_PATH}
